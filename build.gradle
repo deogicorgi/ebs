@@ -9,3 +9,14 @@ sourceCompatibility = '11'
 repositories {
     mavenCentral()
 }
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+}
+
+project(':ebs-api') {
+    dependencies {
+        implementation project(':ebs-core')
+    }
+}
