@@ -1,4 +1,5 @@
 rootProject.name = 'ebs'
 include 'ebs-api'
+include 'ebs-orm'
 include 'ebs-core'
 
