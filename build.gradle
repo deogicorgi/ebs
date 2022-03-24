@@ -20,3 +20,9 @@ project(':ebs-api') {
         implementation project(':ebs-core')
     }
 }
+
+project(':ebs-orm') {
+    dependencies {
+        implementation project(':ebs-core')
+    }
+}
