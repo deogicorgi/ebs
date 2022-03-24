@@ -5,6 +5,7 @@ import com.deogicorgi.api.web.service.UserApiService;
 import com.deogicorgi.core.web.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
 
 /**
  * API Controller for Users.
@@ -20,7 +21,7 @@ public class UserController {
      * Create user.
      */
     @PostMapping
-    public ApiResponse create(@RequestBody UserApiRequest user) {
+    public Mono<ApiResponse> create(@RequestBody UserApiRequest user) {
         return null;
     }
 
@@ -28,7 +29,7 @@ public class UserController {
      * Modify user only the entered attributes.
      */
     @PatchMapping
-    public ApiResponse modify(@RequestBody UserApiRequest user) {
+    public Mono<ApiResponse> modify(@RequestBody UserApiRequest user) {
         return null;
     }
 
@@ -37,7 +38,7 @@ public class UserController {
      * Unpopulated data is updated to empty values.
      */
     @PutMapping
-    public ApiResponse update(@RequestBody UserApiRequest user) {
+    public Mono<ApiResponse> update(@RequestBody UserApiRequest user) {
         return null;
     }
 
@@ -45,7 +46,7 @@ public class UserController {
      * Read one user.
      */
     @GetMapping("/{userId}")
-    public ApiResponse read(@PathVariable Long userId) {
+    public Mono<ApiResponse> read(@PathVariable Long userId) {
         return null;
     }
 
@@ -53,7 +54,7 @@ public class UserController {
      * Read all users.
      */
     @GetMapping
-    public ApiResponse readAll() {
+    public Mono<ApiResponse> readAll() {
         return null;
     }
 
@@ -61,7 +62,7 @@ public class UserController {
      * Delete one users.
      */
     @DeleteMapping("/{userId}")
-    public ApiResponse delete(@PathVariable Long userId) {
+    public Mono<ApiResponse> delete(@PathVariable Long userId) {
         return null;
     }
 }
