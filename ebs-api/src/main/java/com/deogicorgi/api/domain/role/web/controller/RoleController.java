@@ -1,6 +1,6 @@
-package com.deogicorgi.api.web.controller;
+package com.deogicorgi.api.domain.role.web.controller;
 
-import com.deogicorgi.api.web.request.RoleApiRequest;
+import com.deogicorgi.api.domain.role.web.request.RoleApiRequest;
 import com.deogicorgi.core.web.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

@@ -1,5 +1,6 @@
-package com.deogicorgi.api.web.request;
+package com.deogicorgi.api.domain.member.web.request;
 
+import com.deogicorgi.api.domain.member.web.controller.MemberController;
 import com.deogicorgi.core.web.request.ApiRequest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -8,7 +9,7 @@ import lombok.EqualsAndHashCode;
  * Body containing user data
  * used class :
  *
- * @see com.deogicorgi.api.web.controller.UserController
+ * @see MemberController
  */
 
 @Data

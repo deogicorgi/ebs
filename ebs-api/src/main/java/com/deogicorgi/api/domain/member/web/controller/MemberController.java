@@ -1,7 +1,7 @@
-package com.deogicorgi.api.web.controller;
+package com.deogicorgi.api.domain.member.web.controller;
 
-import com.deogicorgi.api.web.request.RoleApiRequest;
-import com.deogicorgi.api.web.service.UserApiService;
+import com.deogicorgi.api.domain.role.web.request.RoleApiRequest;
+import com.deogicorgi.api.domain.member.service.MemberApiService;
 import com.deogicorgi.core.web.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -11,11 +11,11 @@ import reactor.core.publisher.Mono;
  * API Controller for Users.
  */
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/members")
 @RequiredArgsConstructor
-public class UserController {
+public class MemberController {
 
-    private final UserApiService userApiService;
+    private final MemberApiService memberApiService;
 
     /**
      * Create user.

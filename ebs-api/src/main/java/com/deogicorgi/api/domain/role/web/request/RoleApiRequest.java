@@ -1,4 +1,4 @@
-package com.deogicorgi.api.web.request;
+package com.deogicorgi.api.domain.role.web.request;
 
 import com.deogicorgi.core.web.request.ApiRequest;
 
