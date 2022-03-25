@@ -1,15 +1,17 @@
 package com.deogicorgi.api.domain.member.web.controller;
 
-import com.deogicorgi.api.domain.role.web.request.RoleApiRequest;
 import com.deogicorgi.api.domain.member.service.MemberApiService;
+import com.deogicorgi.api.domain.member.web.request.MemberRequestBody;
+import com.deogicorgi.api.domain.role.web.request.RoleApiRequest;
+import com.deogicorgi.api.exception.BindException;
 import com.deogicorgi.core.web.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
-/**
- * API Controller for Users.
- */
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/members")
 @RequiredArgsConstructor
@@ -17,52 +19,42 @@ public class MemberController {
 
     private final MemberApiService memberApiService;
 
-    /**
-     * Create user.
-     */
     @PostMapping
-    public Mono<ApiResponse> create(@RequestBody RoleApiRequest user) {
+    public Mono<ApiResponse> create(
+            @Valid @RequestBody MemberRequestBody member,
+            BindingResult result)
+            throws BindException {
+
+        if (result.hasErrors()) {
+            throw new BindException(result);
+        }
+
+        System.out.println(member);
         return null;
     }
 
-    /**
-     * Modify user only the entered attributes.
-     */
     @PatchMapping
-    public Mono<ApiResponse> modify(@RequestBody RoleApiRequest user) {
+    public Mono<ApiResponse> modify(@RequestBody RoleApiRequest member) {
         return null;
     }
 
-    /**
-     * Update user.
-     * Unpopulated data is updated to empty values.
-     */
     @PutMapping
-    public Mono<ApiResponse> update(@RequestBody RoleApiRequest user) {
+    public Mono<ApiResponse> update(@RequestBody RoleApiRequest member) {
         return null;
     }
 
-    /**
-     * Read one user.
-     */
-    @GetMapping("/{userId}")
-    public Mono<ApiResponse> read(@PathVariable Long userId) {
+    @GetMapping("/{memberNo}")
+    public Mono<ApiResponse> read(@PathVariable Long memberNo) {
         return null;
     }
 
-    /**
-     * Read all users.
-     */
     @GetMapping
     public Mono<ApiResponse> readAll() {
         return null;
     }
 
-    /**
-     * Delete one users.
-     */
-    @DeleteMapping("/{userId}")
-    public Mono<ApiResponse> delete(@PathVariable Long userId) {
+    @DeleteMapping("/{memberNo}")
+    public Mono<ApiResponse> delete(@PathVariable Long memberNo) {
         return null;
     }
 }

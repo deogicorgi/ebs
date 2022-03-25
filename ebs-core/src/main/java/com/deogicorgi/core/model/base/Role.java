@@ -2,16 +2,23 @@ package com.deogicorgi.core.model.base;
 
 import com.deogicorgi.core.values.StatusValue;
 
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public abstract class Role {
 
     protected Long roleNo;
+
+    @NotEmpty
     protected String roleName;
+
     protected StatusValue roleStatus = StatusValue.EXPIRED;
+
     protected String roleDescription;
+
     protected LocalDateTime createdAt;
+
     protected LocalDateTime updatedAt;
 
     public Long getRoleNo() {

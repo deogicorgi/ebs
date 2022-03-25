@@ -1,14 +1,20 @@
 package com.deogicorgi.core.model.base;
 
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public abstract class Organization {
 
     protected Long orgNo;
+
+    @NotEmpty
     protected String orgName;
+
     protected String orgDescription;
+
     protected LocalDateTime createdAt;
+
     protected LocalDateTime updatedAt;
 
     public Long getOrgNo() {

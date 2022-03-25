@@ -1,16 +1,24 @@
 package com.deogicorgi.core.model.base;
 
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public abstract class Team {
 
     protected Long teamNo;
+
     protected Long orgNo;
+
     protected Long parentTeamNo;
+
+    @NotEmpty
     protected String teamName;
+
     protected String teamDescription;
+
     protected LocalDateTime createdAt;
+
     protected LocalDateTime updatedAt;
 
     public Long getTeamNo() {

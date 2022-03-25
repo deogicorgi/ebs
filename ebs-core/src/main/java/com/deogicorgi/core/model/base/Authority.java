@@ -2,17 +2,25 @@ package com.deogicorgi.core.model.base;
 
 import com.deogicorgi.core.values.StatusValue;
 
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public abstract class Authority {
 
     protected Long authorityNo;
+
     protected Long roleNo;
+
+    @NotEmpty
     protected String authorityName;
-    protected StatusValue authorityStatus;
+
+    protected StatusValue authorityStatus = StatusValue.EXPIRED;
+
     protected String authorityDescription;
+
     protected LocalDateTime createdAt;
+
     protected LocalDateTime updatedAt;
 
     public Long getAuthorityNo() {
