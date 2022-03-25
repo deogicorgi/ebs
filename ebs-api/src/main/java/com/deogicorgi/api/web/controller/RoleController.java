@@ -1,21 +1,18 @@
 package com.deogicorgi.api.web.controller;
 
 import com.deogicorgi.api.web.request.RoleApiRequest;
-import com.deogicorgi.api.web.service.UserApiService;
 import com.deogicorgi.core.web.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
 /**
- * API Controller for Users.
+ * API Controller for Role.
  */
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/role")
 @RequiredArgsConstructor
-public class UserController {
-
-    private final UserApiService userApiService;
+public class RoleController {
 
     /**
      * Create user.
