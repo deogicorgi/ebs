@@ -1,1 +1,5 @@
-
+spring:
+  r2dbc:
+    url: r2dbc:mariadb://deogicorgi.home:23306/ebs?useUnicode=true&characterEncoding=utf8
+    username: deogicorgi
+    password: 8813
