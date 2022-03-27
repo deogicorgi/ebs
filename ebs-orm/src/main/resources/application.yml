@@ -3,3 +3,10 @@ spring:
     url: r2dbc:mariadb://deogicorgi.home:23306/ebs?useUnicode=true&characterEncoding=utf8
     username: deogicorgi
     password: 8813
+  jpa.properties.hibernate.dialect: org.hibernate.dialect.MariaDB103Dialect
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+
