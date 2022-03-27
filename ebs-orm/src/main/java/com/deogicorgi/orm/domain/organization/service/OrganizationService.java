@@ -31,11 +31,12 @@ public class OrganizationService {
         entity.setCreatedAt(LocalDateTime.now());
         entity.setUpdatedAt(LocalDateTime.now());
 
-        return organizationRepository.save(entity).map(organizationEntity -> {
-            OrganizationBody organizationBody = new OrganizationBody();
-            BeanUtils.copyProperties(organizationEntity, organizationBody);
-            return organizationBody;
-        });
+        return organizationRepository.save(entity)
+                .map(organizationEntity -> {
+                    OrganizationBody organizationBody = new OrganizationBody();
+                    BeanUtils.copyProperties(organizationEntity, organizationBody);
+                    return organizationBody;
+                });
     }
 
     public Mono<Organization> readOrganization(Long orgNo) {
