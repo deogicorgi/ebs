@@ -3,9 +3,8 @@ package com.deogicorgi.core.model.base;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.Set;
 
-public abstract class Organization {
+public abstract class Organization extends TTCExtend{
 
     protected Long orgNo;
 

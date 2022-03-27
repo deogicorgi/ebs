@@ -2,5 +2,5 @@ package com.deogicorgi.core.model;
 
 import com.deogicorgi.core.model.base.Team;
 
-public class DefaultTeam extends Team {
+public class TeamBody extends Team {
 }

@@ -6,7 +6,6 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;
-import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 import javax.persistence.GeneratedValue;
@@ -18,7 +17,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(value = "Organization")
-public class Organization {
+public class OrganizationEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +25,7 @@ public class Organization {
     private Long orgNo;
 
     @Transient
-    private Set<Team> teams;
+    private Set<TeamEntity> teamEntities;
 
     @Column(value = "orgName")
     private String orgName;

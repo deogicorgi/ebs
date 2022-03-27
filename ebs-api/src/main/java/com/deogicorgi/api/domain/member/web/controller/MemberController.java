@@ -1,9 +1,8 @@
 package com.deogicorgi.api.domain.member.web.controller;
 
 import com.deogicorgi.api.domain.member.service.MemberApiService;
-import com.deogicorgi.api.domain.member.web.request.MemberRequestBody;
-import com.deogicorgi.api.domain.role.web.request.RoleApiRequest;
 import com.deogicorgi.api.exception.BindException;
+import com.deogicorgi.core.model.MemberBody;
 import com.deogicorgi.core.web.response.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.BindingResult;
@@ -21,7 +20,7 @@ public class MemberController {
 
     @PostMapping
     public Mono<ApiResponse> create(
-            @Valid @RequestBody MemberRequestBody member,
+            @Valid @RequestBody MemberBody member,
             BindingResult result)
             throws BindException {
 
@@ -29,17 +28,16 @@ public class MemberController {
             throw new BindException(result);
         }
 
-        System.out.println(member);
         return null;
     }
 
     @PatchMapping
-    public Mono<ApiResponse> modify(@RequestBody RoleApiRequest member) {
+    public Mono<ApiResponse> modify(@RequestBody MemberBody member) {
         return null;
     }
 
     @PutMapping
-    public Mono<ApiResponse> update(@RequestBody RoleApiRequest member) {
+    public Mono<ApiResponse> update(@RequestBody MemberBody member) {
         return null;
     }
 
