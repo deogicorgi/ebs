@@ -4,6 +4,7 @@ import com.deogicorgi.core.model.OrganizationBody;
 import com.deogicorgi.core.model.TeamBody;
 import com.deogicorgi.core.model.base.Organization;
 import com.deogicorgi.orm.domain.organization.jpa.entity.OrganizationEntity;
+import com.deogicorgi.orm.domain.organization.jpa.entity.TeamEntity;
 import com.deogicorgi.orm.domain.organization.jpa.repository.OrganizationRepository;
 import com.deogicorgi.orm.domain.organization.jpa.repository.TeamRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,8 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -45,24 +48,51 @@ public class OrganizationService {
         return organizationRepository.findById(orgNo)
                 .zipWith(teamRepository.findAllByOrgNo(orgNo).collectList())
                 .map(tuple -> {
-                    OrganizationBody organizaion = new OrganizationBody();
-                    BeanUtils.copyProperties(tuple.getT1(), organizaion);
+                    OrganizationBody organization = new OrganizationBody();
+                    BeanUtils.copyProperties(tuple.getT1(), organization);
 
-                    organizaion.setTeams(tuple.getT2().stream().map(teamEntity -> {
+                    organization.setTeams(tuple.getT2().stream().map(teamEntity -> {
                         TeamBody team = new TeamBody();
                         BeanUtils.copyProperties(teamEntity, team);
                         return team;
                     }).collect(Collectors.toSet()));
 
-                    return organizaion;
+                    return organization;
                 });
     }
 
     public Flux<Organization> readAll() {
-        return organizationRepository.findAllByCustom().map(organizationEntity -> {
+        return organizationRepository.findAll().map(organizationEntity -> {
             OrganizationBody organizationBody = new OrganizationBody();
             BeanUtils.copyProperties(organizationEntity, organizationBody);
             return organizationBody;
         });
+    }
+
+    public Flux<Organization> readAllWithTeams() {
+        return organizationRepository.findAll()
+                .collectList()
+                .zipWith(teamRepository.findAll().collectList())
+                .map(tuple -> {
+                    List<OrganizationEntity> organizationEntities = tuple.getT1();
+                    List<TeamEntity> teamEntities = tuple.getT2();
+
+                    return organizationEntities.stream()
+                            .map(organizationEntity -> {
+                                Set<TeamBody> teams = teamEntities.stream()
+                                        .filter(teamEntity -> teamEntity.getOrgNo().equals(organizationEntity.getOrgNo()))
+                                        .map(teamEntity -> {
+                                            TeamBody team = new TeamBody();
+                                            BeanUtils.copyProperties(teamEntity, team);
+                                            return team;
+                                        }).collect(Collectors.toSet());
+
+                                OrganizationBody organization = new OrganizationBody();
+                                BeanUtils.copyProperties(organizationEntity, organization);
+                                organization.setTeams(teams);
+
+                                return organization;
+                            }).collect(Collectors.toList());
+                }).flatMapIterable(list -> list);
     }
 }

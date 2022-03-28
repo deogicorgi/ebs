@@ -13,6 +13,11 @@ repositories {
 subprojects {
     apply plugin: 'java'
     apply plugin: 'idea'
+
+    dependencies {
+        implementation('org.slf4j:jcl-over-slf4j')
+        implementation('ch.qos.logback:logback-classic')
+    }
 }
 
 project(':ebs-api') {

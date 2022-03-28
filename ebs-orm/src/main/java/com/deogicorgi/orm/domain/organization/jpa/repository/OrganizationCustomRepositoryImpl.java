@@ -10,11 +10,10 @@ import reactor.core.publisher.Flux;
 @RequiredArgsConstructor
 public class OrganizationCustomRepositoryImpl implements OrganizationCustomRepository {
 
-    private final R2dbcEntityOperations r2dbcEntityOperations;
+    private final R2dbcEntityOperations entityTemplate;
 
-    public Flux<OrganizationEntity> findAllByCustom() {
-
-//        return r2dbcEntityOperations.select(query(where("orgNo").in("1", "2", "3")), OrganizationEntity.class);
-        return r2dbcEntityOperations.select(OrganizationEntity.class).all();
+    public Flux<OrganizationEntity> findAll() {
+        return entityTemplate.select(OrganizationEntity.class).all();
     }
+
 }

@@ -38,7 +38,7 @@ public class OrganizationController {
 
     @GetMapping
     public Flux<Organization> readAll() {
-        return organizationService.readAll();
+        return organizationService.readAllWithTeams();
     }
 
 }
