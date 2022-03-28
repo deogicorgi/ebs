@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
@@ -55,5 +56,13 @@ public class OrganizationService {
 
                     return organizaion;
                 });
+    }
+
+    public Flux<Organization> readAll() {
+        return organizationRepository.findAllByCustom().map(organizationEntity -> {
+            OrganizationBody organizationBody = new OrganizationBody();
+            BeanUtils.copyProperties(organizationEntity, organizationBody);
+            return organizationBody;
+        });
     }
 }

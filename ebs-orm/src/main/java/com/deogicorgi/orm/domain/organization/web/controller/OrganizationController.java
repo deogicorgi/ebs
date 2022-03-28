@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import javax.validation.Valid;
@@ -33,6 +34,11 @@ public class OrganizationController {
     @GetMapping("/{orgNo}")
     public Mono<Organization> read(@PathVariable Long orgNo) {
         return organizationService.readOrganization(orgNo);
+    }
+
+    @GetMapping
+    public Flux<Organization> readAll() {
+        return organizationService.readAll();
     }
 
 }
