@@ -3,14 +3,13 @@ package com.deogicorgi.orm.domain.organization.web.controller;
 import com.deogicorgi.core.model.OrganizationBody;
 import com.deogicorgi.core.model.base.Organization;
 import com.deogicorgi.orm.domain.organization.service.OrganizationService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import org.springframework.validation.BindException;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,15 +18,15 @@ public class OrganizationController {
 
     private final OrganizationService organizationService;
 
+    @Operation(summary = "test hello", description = "hello api example")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "OK !!"),
+            @ApiResponse(responseCode = "400", description = "BAD REQUEST !!"),
+            @ApiResponse(responseCode = "404", description = "NOT FOUND !!"),
+            @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR !!")
+    })
     @PostMapping
-    public Mono<Organization> create(
-            @Valid @RequestBody OrganizationBody organizationBody,
-            BindingResult result)
-            throws BindException {
-
-        if (result.hasErrors()) {
-            throw new BindException(result);
-        }
+    public Mono<Organization> create(@RequestBody OrganizationBody organizationBody) {
         return organizationService.saveOrganization(organizationBody);
     }
 
