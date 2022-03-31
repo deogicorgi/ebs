@@ -23,6 +23,7 @@ repositories {
 dependencies {
 
     api 'org.hibernate:hibernate-validator:7.0.4.Final'
+    implementation 'org.springframework:spring-web'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'

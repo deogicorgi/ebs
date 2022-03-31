@@ -1,12 +1,13 @@
 package com.deogicorgi.orm.domain.organization.web.controller;
 
-import com.deogicorgi.core.model.OrganizationBody;
+import com.deogicorgi.core.model.OrganizationDto;
 import com.deogicorgi.core.model.base.Organization;
 import com.deogicorgi.orm.domain.organization.service.OrganizationService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -26,8 +27,8 @@ public class OrganizationController {
             @ApiResponse(responseCode = "500", description = "INTERNAL SERVER ERROR !!")
     })
     @PostMapping
-    public Mono<Organization> create(@RequestBody OrganizationBody organizationBody) {
-        return organizationService.saveOrganization(organizationBody);
+    public Mono<Organization> create(@RequestBody OrganizationDto organizationDto) {
+        return organizationService.saveOrganization(organizationDto);
     }
 
     @GetMapping("/{orgNo}")

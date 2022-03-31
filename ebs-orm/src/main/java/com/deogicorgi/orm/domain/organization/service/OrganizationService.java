@@ -1,7 +1,7 @@
 package com.deogicorgi.orm.domain.organization.service;
 
-import com.deogicorgi.core.model.OrganizationBody;
-import com.deogicorgi.core.model.TeamBody;
+import com.deogicorgi.core.model.OrganizationDto;
+import com.deogicorgi.core.model.TeamDto;
 import com.deogicorgi.core.model.base.Organization;
 import com.deogicorgi.orm.domain.organization.jpa.entity.OrganizationEntity;
 import com.deogicorgi.orm.domain.organization.jpa.entity.TeamEntity;
@@ -37,9 +37,9 @@ public class OrganizationService {
 
         return organizationRepository.save(entity)
                 .map(organizationEntity -> {
-                    OrganizationBody organizationBody = new OrganizationBody();
-                    BeanUtils.copyProperties(organizationEntity, organizationBody);
-                    return organizationBody;
+                    OrganizationDto organizationDto = new OrganizationDto();
+                    BeanUtils.copyProperties(organizationEntity, organizationDto);
+                    return organizationDto;
                 });
     }
 
@@ -48,11 +48,11 @@ public class OrganizationService {
         return organizationRepository.findById(orgNo)
                 .zipWith(teamRepository.findAllByOrgNo(orgNo).collectList())
                 .map(tuple -> {
-                    OrganizationBody organization = new OrganizationBody();
+                    OrganizationDto organization = new OrganizationDto();
                     BeanUtils.copyProperties(tuple.getT1(), organization);
 
                     organization.setTeams(tuple.getT2().stream().map(teamEntity -> {
-                        TeamBody team = new TeamBody();
+                        TeamDto team = new TeamDto();
                         BeanUtils.copyProperties(teamEntity, team);
                         return team;
                     }).collect(Collectors.toSet()));
@@ -63,9 +63,9 @@ public class OrganizationService {
 
     public Flux<Organization> readAll() {
         return organizationRepository.findAll().map(organizationEntity -> {
-            OrganizationBody organizationBody = new OrganizationBody();
-            BeanUtils.copyProperties(organizationEntity, organizationBody);
-            return organizationBody;
+            OrganizationDto organizationDto = new OrganizationDto();
+            BeanUtils.copyProperties(organizationEntity, organizationDto);
+            return organizationDto;
         });
     }
 
@@ -79,15 +79,15 @@ public class OrganizationService {
 
                     return organizationEntities.stream()
                             .map(organizationEntity -> {
-                                Set<TeamBody> teams = teamEntities.stream()
+                                Set<TeamDto> teams = teamEntities.stream()
                                         .filter(teamEntity -> teamEntity.getOrgNo().equals(organizationEntity.getOrgNo()))
                                         .map(teamEntity -> {
-                                            TeamBody team = new TeamBody();
+                                            TeamDto team = new TeamDto();
                                             BeanUtils.copyProperties(teamEntity, team);
                                             return team;
                                         }).collect(Collectors.toSet());
 
-                                OrganizationBody organization = new OrganizationBody();
+                                OrganizationDto organization = new OrganizationDto();
                                 BeanUtils.copyProperties(organizationEntity, organization);
                                 organization.setTeams(teams);
 

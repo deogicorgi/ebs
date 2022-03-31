@@ -3,7 +3,6 @@ package com.deogicorgi.orm;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-//@EnableWebFlux
 @SpringBootApplication
 public class EbsOrmApplication {
 

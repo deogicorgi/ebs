@@ -23,5 +23,8 @@ database:
 
 logging.level.org.springframework.r2dbc: DEBUG
 
+spring:
+  main:
+    allow-bean-definition-overriding: true
 
 #spring.jackson.serialization.write_dates_as_timestamps: false
