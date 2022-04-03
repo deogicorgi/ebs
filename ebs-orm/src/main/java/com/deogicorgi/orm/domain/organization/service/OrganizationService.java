@@ -61,7 +61,7 @@ public class OrganizationService {
                 });
     }
 
-    public Flux<Organization> readAll() {
+    public Flux<Organization> readAllOrganizations() {
         return organizationRepository.findAll().map(organizationEntity -> {
             OrganizationDto organizationDto = new OrganizationDto();
             BeanUtils.copyProperties(organizationEntity, organizationDto);
@@ -69,7 +69,7 @@ public class OrganizationService {
         });
     }
 
-    public Flux<Organization> readAllWithTeams() {
+    public Flux<Organization> readAllOrganizationWithTeam() {
         return organizationRepository.findAll()
                 .collectList()
                 .zipWith(teamRepository.findAll().collectList())
